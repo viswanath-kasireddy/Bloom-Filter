@@ -5,18 +5,18 @@ Bloom filters are probabilistic data structures that allow a user to search for 
 The basic design of a Bloom filter is an array where every value is set to 0. We use a given number of hash functions to hash the data we are trying to store, then set bits at the indices corresponding to the value of our hashes to 1. When we want to check if something is stored in the Bloom filter, we simply check if the proper indices have been set to 1. 
 
 We can calculate the probability of a false positive as 
-P = (1 -[1 -1m]kn)k 
+P = (1 -[1 -(1/m)]^kn)^k 
 
 Where m is the size of our bloom filter, k is the number of hash functions we use, and n is the number of elements we will store. 
 
 We can calculate the size of our bloom filter as
-m= -n*ln(P) (ln(2)2)
+m= -n*ln(P)/(ln(2)^2)
 
 
 Where n is the number of elements we will store and P is the false positive rate we are aiming for. 
 
 We can also calculate the optimal number of hash functions to use as
-k = mnln(2)
+k = (m/n)ln(2)
 
 Where k is the number of hash functions we will use, m is the size of our bloom filter, and n is the number of elements we will store. 
 
